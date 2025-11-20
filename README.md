@@ -43,7 +43,27 @@ A specialized EPUB 3 reader for the Kindle Paperwhite 5 (11th Gen) that supports
 
 ## Building
 
-### Option 1: Using Docker (Recommended)
+### For Development/Testing (macOS/Linux Simulator)
+
+**New!** You can now test the application on your Mac or Linux machine without Kindle hardware:
+
+```bash
+# Install GStreamer first (macOS)
+brew install gstreamer gst-plugins-base gst-plugins-good
+
+# Build and run simulator
+./build-simulator.sh
+
+# Or manually:
+cd immersion_reader
+cargo run --no-default-features --features simulator -- /path/to/book.epub
+```
+
+See **[SIMULATOR.md](SIMULATOR.md)** for complete simulator documentation.
+
+### For Kindle Deployment
+
+#### Option 1: Using Docker (Recommended)
 
 ```bash
 # Build the Docker image
@@ -53,7 +73,7 @@ docker build -t immersion-reader-builder .
 docker run --rm -v $(pwd):/workspace immersion-reader-builder ./build.sh
 ```
 
-### Option 2: Manual Cross-Compilation
+#### Option 2: Manual Cross-Compilation
 
 1. Install the musl cross-compilation toolchain:
    ```bash

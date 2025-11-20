@@ -1,6 +1,18 @@
+// Conditional compilation for Kindle vs Simulator
+#[cfg(feature = "simulator")]
+mod audio_sim;
+#[cfg(feature = "simulator")]
+mod display_sim;
+#[cfg(feature = "simulator")]
+mod input_sim;
+
+#[cfg(feature = "kindle")]
 mod audio;
+#[cfg(feature = "kindle")]
 mod display;
+#[cfg(feature = "kindle")]
 mod input;
+
 mod parser;
 
 use anyhow::{Context, Result};
@@ -8,9 +20,30 @@ use std::path::PathBuf;
 use std::thread;
 use std::time::Duration;
 
+#[cfg(feature = "simulator")]
+use audio_sim::AudioPlayer;
+#[cfg(feature = "simulator")]
+use display_sim::Display;
+#[cfg(feature = "simulator")]
+use input_sim::{InputHandler, TouchEvent};
+
+#[cfg(feature = "kindle")]
 use audio::AudioPlayer;
+#[cfg(feature = "kindle")]
 use display::{Display, Rect};
+#[cfg(feature = "kindle")]
 use input::{InputHandler, TouchEvent};
+
+// Rect is defined in display.rs for kindle, but we need it in simulator too
+#[cfg(feature = "simulator")]
+#[derive(Debug, Clone, Copy)]
+pub struct Rect {
+    pub x: u16,
+    pub y: u16,
+    pub width: u16,
+    pub height: u16,
+}
+
 use parser::{Chapter, EpubDocument, SyncNode};
 
 /// Main application state
