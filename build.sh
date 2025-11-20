@@ -59,7 +59,8 @@ build_project() {
     cd "$RUST_PROJECT"
 
     # Build in release mode with musl target
-    cargo build --release --target aarch64-unknown-linux-musl
+    # Explicitly specify target to override any config
+    cargo build --release --target aarch64-unknown-linux-musl --features kindle
 
     echo -e "${GREEN}✓ Build complete${NC}"
 }

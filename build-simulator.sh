@@ -44,9 +44,15 @@ fi
 
 cd "$RUST_PROJECT"
 
+# Clean any previous builds to avoid target conflicts
+echo ""
+echo -e "${YELLOW}Cleaning previous builds...${NC}"
+cargo clean
+
 # Build in simulator mode
 echo ""
 echo -e "${YELLOW}Building simulator...${NC}"
+# Don't specify target - let it use the native target for your platform
 cargo build --no-default-features --features simulator
 
 echo ""

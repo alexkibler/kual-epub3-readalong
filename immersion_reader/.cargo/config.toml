@@ -1,11 +1,15 @@
-[build]
-target = "aarch64-unknown-linux-musl"
+# Cross-compilation config for Kindle builds only
+# When building simulator, use: cargo build --target <native-target> or don't specify target
+
+# Uncomment the line below ONLY when building for Kindle with ./build.sh
+# [build]
+# target = "aarch64-unknown-linux-musl"
 
 [target.aarch64-unknown-linux-musl]
 linker = "aarch64-linux-musl-gcc"
 rustflags = ["-C", "target-feature=+crt-static"]
 
 [env]
-# Set PKG_CONFIG paths for cross-compilation
+# Set PKG_CONFIG paths for cross-compilation (Kindle only)
 PKG_CONFIG_ALLOW_CROSS = "1"
 PKG_CONFIG_PATH = "/usr/aarch64-linux-musl/lib/pkgconfig"
