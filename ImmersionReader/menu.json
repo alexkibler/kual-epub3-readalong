@@ -1,0 +1,31 @@
+{
+    "items": [
+        {
+            "name": "Immersion Reader",
+            "priority": 10,
+            "items": [
+                {
+                    "name": "Launch Reader",
+                    "priority": 1,
+                    "action": "./launch.sh",
+                    "exitmenu": true,
+                    "refresh": false
+                },
+                {
+                    "name": "Open EPUB",
+                    "priority": 2,
+                    "action": "./open_epub.sh",
+                    "exitmenu": true,
+                    "refresh": false
+                },
+                {
+                    "name": "Help",
+                    "priority": 3,
+                    "action": "./show_help.sh",
+                    "exitmenu": false,
+                    "refresh": false
+                }
+            ]
+        }
+    ]
+}

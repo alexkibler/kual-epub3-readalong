@@ -1,0 +1,48 @@
+[package]
+name = "immersion_reader"
+version = "0.1.0"
+edition = "2021"
+authors = ["KUAL Extension Builder"]
+description = "EPUB 3 Media Overlays reader for Kindle Paperwhite 5"
+
+[dependencies]
+# Audio pipeline
+gstreamer = "0.22"
+gstreamer-audio = "0.22"
+
+# EPUB parsing
+zip = "0.6"
+quick-xml = "0.31"
+epub = "2.1"
+
+# Input handling
+evdev = "0.12"
+
+# FFI for FBInk
+libc = "0.2"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Async runtime (optional, for better control)
+tokio = { version = "1", features = ["full"], optional = true }
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+
+[build-dependencies]
+bindgen = "0.69"
+cc = "1.0"
+
+[profile.release]
+opt-level = "z"     # Optimize for size
+lto = true          # Link-time optimization
+codegen-units = 1   # Better optimization
+strip = true        # Strip symbols
+panic = "abort"     # Smaller binary
+
+[features]
+default = []
+async = ["tokio"]

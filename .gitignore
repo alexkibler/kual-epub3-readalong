@@ -1,0 +1,31 @@
+# Rust build artifacts
+immersion_reader/target/
+immersion_reader/Cargo.lock
+
+# Binary output
+ImmersionReader/bin/immersion_reader
+
+# Build artifacts
+*.tar.gz
+*.zip
+
+# Test files
+test/*.epub
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Temporary files
+/tmp/
+*.tmp
+
+# Build output
+OUT_DIR/
